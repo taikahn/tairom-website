@@ -9,17 +9,20 @@ function extractText(node) {
   return '';
 }
 
-export function ScrambleText({ children, className = '', tag: Tag = 'span', ...rest }) {
+export function ScrambleText({ children, className = '', tag: Tag = 'span', hover: hoverProp, ...rest }) {
   const target = extractText(children);
-  const [hover, setHover] = useState(false);
+  const [internalHover, setInternalHover] = useState(false);
+  const controlled = hoverProp !== undefined;
+  const hover = controlled ? hoverProp : internalHover;
   const text = useScramble(target, hover, 24);
+  const handlers = controlled
+    ? {}
+    : {
+        onMouseEnter: () => setInternalHover(true),
+        onMouseLeave: () => setInternalHover(false),
+      };
   return (
-    <Tag
-      className={`scramble ${className}`}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      {...rest}
-    >
+    <Tag className={`scramble ${className}`} {...handlers} {...rest}>
       {text}
     </Tag>
   );

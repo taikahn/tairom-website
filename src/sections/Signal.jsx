@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ScrambleText } from '../components/ScrambleText.jsx';
 import { SectionHead } from './SectionHead.jsx';
 import { ICONS } from '../icons/index.js';
@@ -11,26 +12,40 @@ const LINKS = [
   { num: '// 06', name: 'LINKTREE',    handle: '/TAIROM',           href: 'https://linktr.ee/tairom',                               icon: 'linktree' },
 ];
 
+function SignalCell({ link }) {
+  const [hover, setHover] = useState(false);
+  return (
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noreferrer noopener"
+      className="signal-cell"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <div className="num">{link.num}</div>
+      <div
+        className="ch-icon"
+        style={{
+          WebkitMaskImage: ICONS[link.icon],
+          maskImage: ICONS[link.icon],
+        }}
+        aria-hidden="true"
+      ></div>
+      <div className="name"><ScrambleText hover={hover}>{link.name}</ScrambleText></div>
+      <div className="handle">{link.handle}</div>
+      <div className="arrow">↗</div>
+    </a>
+  );
+}
+
 export function Signal() {
   return (
     <section className="section" id="signal">
       <SectionHead title="SIGNAL // CHANNELS" meta="06 OUTPUTS // ACTIVE" />
       <div className="signal-grid">
         {LINKS.map((l, i) => (
-          <a key={i} href={l.href} target="_blank" rel="noreferrer noopener" className="signal-cell">
-            <div className="num">{l.num}</div>
-            <div
-              className="ch-icon"
-              style={{
-                WebkitMaskImage: ICONS[l.icon],
-                maskImage: ICONS[l.icon],
-              }}
-              aria-hidden="true"
-            ></div>
-            <div className="name"><ScrambleText>{l.name}</ScrambleText></div>
-            <div className="handle">{l.handle}</div>
-            <div className="arrow">↗</div>
-          </a>
+          <SignalCell key={i} link={l} />
         ))}
       </div>
     </section>
