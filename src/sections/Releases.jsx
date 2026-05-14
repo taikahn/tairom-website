@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ScrambleText } from '../components/ScrambleText.jsx';
 import { SectionHead } from './SectionHead.jsx';
+import { useAutoScramble } from '../hooks/useAutoScramble.js';
 
 const SECONDARY_CTA_STYLE = {
   background: 'var(--bg)',
@@ -13,9 +14,13 @@ const SECONDARY_CTA_STYLE = {
 };
 
 function SecondaryCta({ href, label }) {
+  const ref = useRef(null);
   const [hover, setHover] = useState(false);
+  const auto = useAutoScramble(ref);
+  const active = hover || auto;
   return (
     <a
+      ref={ref}
       href={href}
       target="_blank"
       rel="noreferrer noopener"
@@ -27,7 +32,7 @@ function SecondaryCta({ href, label }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <ScrambleText hover={hover}>{label}</ScrambleText>
+      <ScrambleText hover={active}>{label}</ScrambleText>
     </a>
   );
 }

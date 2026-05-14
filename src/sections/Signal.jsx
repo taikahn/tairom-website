@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ScrambleText } from '../components/ScrambleText.jsx';
 import { SectionHead } from './SectionHead.jsx';
 import { ICONS } from '../icons/index.js';
+import { useAutoScramble } from '../hooks/useAutoScramble.js';
 
 const LINKS = [
   { num: '// 01', name: 'SPOTIFY',     handle: '@TAIROM',           href: 'https://open.spotify.com/artist/7LdLNXWskTSj6ztUnSzn38', icon: 'spotify' },
@@ -13,9 +14,13 @@ const LINKS = [
 ];
 
 function SignalCell({ link }) {
+  const ref = useRef(null);
   const [hover, setHover] = useState(false);
+  const auto = useAutoScramble(ref);
+  const active = hover || auto;
   return (
     <a
+      ref={ref}
       href={link.href}
       target="_blank"
       rel="noreferrer noopener"
@@ -32,7 +37,7 @@ function SignalCell({ link }) {
         }}
         aria-hidden="true"
       ></div>
-      <div className="name"><ScrambleText hover={hover}>{link.name}</ScrambleText></div>
+      <div className="name"><ScrambleText hover={active}>{link.name}</ScrambleText></div>
       <div className="handle">{link.handle}</div>
       <div className="arrow">↗</div>
     </a>
