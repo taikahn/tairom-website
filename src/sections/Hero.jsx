@@ -2,7 +2,7 @@ import { useClock, formatTime } from '../hooks/useClock.js';
 import { GlitchWordmark } from '../components/GlitchWordmark.jsx';
 import { Sigil } from '../components/Sigil.jsx';
 
-export function Hero() {
+export function Hero({ bootDone = true }) {
   const t = useClock();
   return (
     <section className="hero" id="hero">
@@ -15,7 +15,7 @@ export function Hero() {
         <span className="row">{formatTime(t)}</span>
       </div>
       <div className="wordmark-wrap">
-        <GlitchWordmark text="TAIROM" />
+        <GlitchWordmark text="TAIROM" start={bootDone} />
         <div className="tagline-row">
           <div className="tagline">
             <strong>EXPERIMENTAL DIY</strong> &nbsp;//&nbsp; DARK ELECTRONIC INDUSTRIAL BREAKBEATS &nbsp;//&nbsp; AMBIENT &nbsp;//&nbsp; IDM

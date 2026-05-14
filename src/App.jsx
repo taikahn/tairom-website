@@ -20,7 +20,7 @@ export default function App() {
       <div className="fx-grain"></div>
 
       <main className="shell">
-        <Hero />
+        <Hero bootDone={bootDone} />
         <Signal />
         <Releases />
         <Foot />

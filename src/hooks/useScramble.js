@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#________░▒▓█▌▐';
+export const SCRAMBLE_CHARS = '!<>-_\\/—=+*^?#________░▒▓█▌▐';
 
 export function useScramble(target, active, speed = 30) {
   const [out, setOut] = useState(target);
