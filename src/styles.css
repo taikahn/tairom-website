@@ -468,6 +468,96 @@ a { color: inherit; text-decoration: none; }
   margin-top: 8px;
 }
 
+.broadcast-feature::before { content: 'CHANNEL // 001'; }
+.broadcast-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  margin-top: 8px;
+  display: block;
+}
+.broadcast-cell {
+  position: relative;
+  background: var(--bg);
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  overflow: hidden;
+  display: block;
+}
+.broadcast-cell::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,5,5,0.15) 0%, rgba(5,5,5,0.85) 100%);
+  transition: background 0.15s;
+  pointer-events: none;
+}
+.broadcast-cell:hover::after {
+  background: linear-gradient(180deg, rgba(5,5,5,0.05) 0%, rgba(5,5,5,0.75) 100%);
+}
+.broadcast-cell .b-num {
+  position: absolute; top: 10px; left: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  z-index: 2;
+}
+.broadcast-cell .b-dur {
+  position: absolute; top: 10px; right: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  background: rgba(5,5,5,0.7);
+  padding: 2px 6px;
+  z-index: 2;
+}
+.broadcast-cell .b-title {
+  position: absolute; left: 12px; right: 12px; bottom: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.35;
+  z-index: 2;
+  transition: color 0.1s;
+}
+.broadcast-cell:hover .b-title { color: var(--accent); }
+.broadcast-cell .b-play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  border: 1px solid var(--ink-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  color: var(--ink);
+  background: rgba(5,5,5,0.55);
+  z-index: 2;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.broadcast-cell:hover .b-play {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(5,5,5,0.35);
+}
+.broadcast-subscribe {
+  display: block;
+  background: var(--bg);
+  padding: 18px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  border: 1px solid var(--bg-rule);
+  margin-top: 1px;
+  transition: color 0.1s, background 0.1s;
+}
+.broadcast-subscribe:hover { color: var(--accent); }
+
 .release-list {
   display: flex; flex-direction: column;
 }

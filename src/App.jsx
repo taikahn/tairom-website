@@ -5,6 +5,7 @@ import { Rails } from './sections/Rails.jsx';
 import { Hero } from './sections/Hero.jsx';
 import { Signal } from './sections/Signal.jsx';
 import { Releases } from './sections/Releases.jsx';
+import { Broadcast } from './sections/Broadcast.jsx';
 import { Foot } from './sections/Foot.jsx';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         <Hero bootDone={bootDone} />
         <Signal />
         <Releases />
+        <Broadcast />
         <Foot />
       </main>
     </>
